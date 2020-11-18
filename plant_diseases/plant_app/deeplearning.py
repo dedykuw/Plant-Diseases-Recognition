@@ -1,6 +1,9 @@
 import tensorflow as tf
 from keras.models import load_model
 from pathlib import Path
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # global graph, model, output_list
 
 graph = tf.get_default_graph()
