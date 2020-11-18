@@ -1,9 +1,12 @@
 import tensorflow as tf
 from keras.models import load_model
+from pathlib import Path
 # global graph, model, output_list
 
 graph = tf.get_default_graph()
-model = load_model('plant_app\AlexNetModel.hdf5')
+folder = Path("plant_app/")
+filetoOpen = folder / "AlexNetModel.hdf5"
+model = load_model(str(filetoOpen))
 
 output_dict = {
                'Jagung - Cercospora Bintik Daun Abu-abu': 7,
