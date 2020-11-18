@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from keras.preprocessing import image
+from django.http import JsonResponse
 import numpy as np
 from .deeplearning import graph, model, output_list
 import base64
 
-
+def index_exists(ls, i):
+    return (0 <= i < len(ls)) or (-len(ls) <= i < 0)
 def index(request):
     if request.method == 'POST' and request.FILES.get('myfile'):
         myfile = request.FILES['myfile']
@@ -19,9 +21,11 @@ def index(request):
 
         prediction_flatten = prediction.flatten()
         max_val_index = np.argmax(prediction_flatten)
-        result = output_list[max_val_index]
-
-        return render(request, "plant_app/index.html", {
-            'result': result, 'file_url': b64_img})
+        if index_exists(output_list, max_val_index):
+            result = output_list[max_val_index]
+        else:
+            result = "undefined"
+        return JsonResponse({
+            'result': result})
 
     return render(request, "plant_app/index.html")
