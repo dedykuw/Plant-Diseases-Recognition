@@ -21,7 +21,8 @@ def index(request):
 
         prediction_flatten = prediction.flatten()
         max_val_index = np.argmax(prediction_flatten)
-        if index_exists(output_list, max_val_index):
+        print(max_val_index)
+        if max_val_index > 6 and max_val_index < 11 :
             result = output_list[max_val_index]
         else:
             result = "undefined"
