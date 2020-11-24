@@ -10,7 +10,6 @@ graph = tf.get_default_graph()
 folder = Path("plant_app/")
 filetoOpen = folder / "AlexNetModel.hdf5"
 model = load_model(str(filetoOpen))
-
 output_dict = {
     'Apple___Apple_scab': 0,
     'Apple___Black_rot': 1,

@@ -26,7 +26,10 @@ def index(request):
             result = output_list[max_val_index]
         else:
             result = "undefined"
-        return JsonResponse({
-            'result': result})
+        return JsonResponse(
+            {
+                'result': result
+            }
+        )
 
     return render(request, "plant_app/index.html")
